@@ -1,0 +1,7 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "description": "Weekly schedule on early Tuesday mornings (before 4 AM).",
+    "schedule": [
+        "* 0-3 * * 2"
+    ]
+}

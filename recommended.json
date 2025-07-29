@@ -1,0 +1,47 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "github>ni/python-renovate-config:default",
+        "github>ni/python-renovate-config:presets/enableVulnerabilityAlerts",
+        "helpers:pinGitHubActionDigestsToSemver",
+        ":rebaseStalePrs"
+    ],
+    "minimumReleaseAge": "14 days",
+    "packageRules": [
+        {
+            "description": "Update GitHub Actions early Monday mornings.",
+            "extends": [
+                "github>ni/python-renovate-config:presets/group/githubActions",
+                "schedule:weekly"
+            ]
+        },
+        {
+            "description": "Update Python packages early Monday mornings.",
+            "extends": [
+                "github>ni/python-renovate-config:presets/group/python",
+                "schedule:weekly"
+            ]
+        },
+        {
+            "description": "Set minimumReleaseAge to 1 day for ni/python-actions.",
+            "matchPackageNames": [
+                "ni/python-actions"
+            ],
+            "minimumReleaseAge": "1 day"
+        },
+        {
+            "description": "Set minimumReleaseAge to 1 day for NI Python packages.",
+            "extends": [
+                "github>ni/python-renovate-config:presets/packages/niPython"
+            ],
+            "minimumReleaseAge": "1 day"
+        }
+    ],
+    "lockFileMaintenance": {
+        "description": "Run lock file maintenance (updates) early Tuesday mornings.",
+        "enabled": true,
+        "extends": [
+            "github>ni/python-renovate-config:presets/schedule/earlyTuesdays"
+        ]
+    }
+}
