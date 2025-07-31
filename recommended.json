@@ -1,0 +1,49 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "local>ni/python-renovate-config:default",
+        "local>ni/python-renovate-config:presets/enableVulnerabilityAlerts",
+        "helpers:pinGitHubActionDigestsToSemver",
+        // Run lock file maintenance monthly in order to upgrade indirect
+        // dependencies that are not covered by the weekly update, such as
+        // `certifi` or `typing_extensions`.
+        ":maintainLockFilesMonthly",
+        ":rebaseStalePrs"
+    ],
+    // Do not upgrade to new package versions as soon as they are released. If
+    // an upstream package is compromised, delaying makes it more likely that
+    // the compromised version will be detected and pulled from the repository
+    // before we try to upgrade. This should not affect security vulnerability
+    // alerts.
+    "minimumReleaseAge": "14 days",
+    "packageRules": [
+        {
+            "description": "Update GitHub Actions early Monday mornings.",
+            "extends": [
+                "local>ni/python-renovate-config:presets/group/githubActions",
+                "schedule:weekly"
+            ]
+        },
+        {
+            "description": "Update Python packages early Monday mornings.",
+            "extends": [
+                "local>ni/python-renovate-config:presets/group/python",
+                "schedule:weekly"
+            ]
+        },
+        {
+            "description": "Set minimumReleaseAge to 1 day for ni/python-actions.",
+            "matchPackageNames": [
+                "ni/python-actions"
+            ],
+            "minimumReleaseAge": "1 day"
+        },
+        {
+            "description": "Set minimumReleaseAge to 1 day for NI Python packages.",
+            "extends": [
+                "local>ni/python-renovate-config:presets/packages/niPython"
+            ],
+            "minimumReleaseAge": "1 day"
+        }
+    ]
+}
