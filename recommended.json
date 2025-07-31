@@ -4,9 +4,17 @@
         "local>ni/python-renovate-config:default",
         "local>ni/python-renovate-config:presets/enableVulnerabilityAlerts",
         "helpers:pinGitHubActionDigestsToSemver",
+        // Run lock file maintenance monthly in order to upgrade indirect
+        // dependencies that are not covered by the weekly update, such as
+        // `certifi` or `typing_extensions`.
         ":maintainLockFilesMonthly",
         ":rebaseStalePrs"
     ],
+    // Do not upgrade to new package versions as soon as they are released. If
+    // an upstream package is compromised, delaying makes it more likely that
+    // the compromised version will be detected and pulled from the repository
+    // before we try to upgrade. This should not affect security vulnerability
+    // alerts.
     "minimumReleaseAge": "14 days",
     "packageRules": [
         {
