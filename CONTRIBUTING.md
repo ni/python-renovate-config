@@ -3,7 +3,7 @@
 Contributions to `ni/python-renovate-config` are welcome from all!
 
 `ni/python-renovate-config` is managed via [git](https://git-scm.com), with the canonical upstream
-repository hosted on [GitHub](https://github.com/ni/<reponame>/).
+repository hosted on [GitHub](https://github.com/ni/python-renovate-config/).
 
 `ni/python-renovate-config` follows a pull-request model for development.  If you wish to
 contribute, you will need to create a GitHub account, fork this project, push a
@@ -49,5 +49,5 @@ See [GitHub's official documentation](https://help.github.com/articles/using-pul
 
 (taken from [developercertificate.org](https://developercertificate.org/))
 
-See [LICENSE](https://github.com/ni/<reponame>/blob/main/LICENSE)
+See [LICENSE](https://github.com/ni/python-renovate-config/blob/main/LICENSE)
 for details about how `ni/python-renovate-config` is licensed.
