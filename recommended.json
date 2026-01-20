@@ -25,11 +25,11 @@
             ]
         },
         {
-            "description": "Update Python packages early Monday mornings.",
+            "description": "Update Python packages on Sundays.",
             "extends": [
-                "local>ni/python-renovate-config//presets/group/python",
-                "schedule:weekly"
-            ]
+                "local>ni/python-renovate-config//presets/group/python"
+            ],
+            "schedule": ["* * * * 0"]
         },
         {
             "description": "Set minimumReleaseAge to 1 day for ni/python-actions.",
