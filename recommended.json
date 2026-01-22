@@ -18,11 +18,11 @@
     "minimumReleaseAge": "14 days",
     "packageRules": [
         {
-            "description": "Update GitHub Actions early Monday mornings.",
+            "description": "Update GitHub Actions on Sundays.",
             "extends": [
-                "local>ni/python-renovate-config//presets/group/githubActions",
-                "schedule:weekly"
-            ]
+                "local>ni/python-renovate-config//presets/group/githubActions"
+            ],
+            "schedule": ["* * * * 0"]
         },
         {
             "description": "Update Python packages on Sundays.",
