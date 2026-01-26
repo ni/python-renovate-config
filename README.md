@@ -32,8 +32,8 @@ The recommended configuration includes settings that are recommended for all NI 
 which some project owners may want to configure differently.
 
 - Extends `default.json`
-- Updates GitHub Actions early Monday mornings
-- Updates Python packages early Monday mornings
+- Updates GitHub Actions on Sundays
+- Updates Python packages on Sundays
 - Runs lock file maintenance monthly in order to upgrade indirect dependencies that are not covered
   by the weekly update, such as `certifi` or `typing_extensions`.
 - Enables vulnerability alerts ([`presets/enableVulnerabilityAlerts.json`](./presets/enableVulnerabilityAlerts.json))
