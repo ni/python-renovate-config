@@ -59,6 +59,12 @@ jobs:
           exit 1
         fi
 
+        if [[ "${GITHUB_EVENT_NAME}" == "pull_request" ]] && ! git diff --quiet -- docs; then
+          echo "docs/ is out of sync with the source configs; regenerate it (via this workflow) and commit the updated docs/ output." >&2
+          git --no-pager diff -- docs >&2
+          exit 1
+        fi
+
     - name: Commit docs mirror changes
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       shell: bash

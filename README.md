@@ -66,8 +66,7 @@ Example:
 ```
 
 The GitHub Actions workflow keeps `docs/` in sync, rewrites the inter-file preset links to use
-`https://ni.github.io/python-renovate-config/`, and deploys `docs/` to GitHub Pages so those URLs
-resolve without requiring a GitHub PAT.
+`https://ni.github.io/python-renovate-config/`, and commits `docs/` so GitHub Pages (configured to publish from `docs/`) can serve those URLs without requiring a GitHub PAT.
 
 ## Presets
 
