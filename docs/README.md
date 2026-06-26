@@ -1,6 +1,6 @@
 # Generated Config Mirror
 
-`.github/workflows/sync-docs.sh` populates this directory by copying the config fils and rewriting internal `local>` references to the GitHb Pages URLs rooted at:
+`.github/workflows/sync-docs.sh` populates this directory by copying the config files and rewriting internal `local>` references to the GitHub Pages URLs rooted at:
 
 `https://ni.github.io/python-renovate-config/`
 

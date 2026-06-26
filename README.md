@@ -65,7 +65,7 @@ Example:
 }
 ```
 
-PR builds validate that `docs/` in sync, and a script is provided to keep it in sync.
+PR builds validate that `docs/` is in sync, and a script is provided to keep it in sync.
 
 ## Presets
 
