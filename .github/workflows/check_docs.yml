@@ -7,9 +7,6 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   validate-docs:
@@ -35,7 +32,7 @@ jobs:
           exit 1
         fi
 
-        if [[ "${GITHUB_EVENT_NAME}" == "pull_request" ]] && ! git diff --quiet -- docs; then
+        if ! git diff --quiet -- docs; then
           echo "docs/ is out of sync with the source configs; regenerate it (by running .github/workflows/sync-docs.sh) and commit the updated docs/ output." >&2
           git --no-pager diff -- docs >&2
           exit 1
