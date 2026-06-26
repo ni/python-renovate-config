@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - 'releases/**'
+  workflow_call:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  check_actions:
+    name: Check actions
+    uses: ./.github/workflows/check_actions.yml
+    permissions:
+      security-events: write
+  check_docs:
+    name: Check docs
+    uses: ./.github/workflows/check_docs.yml
