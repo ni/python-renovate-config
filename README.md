@@ -50,6 +50,23 @@ which some project owners may want to configure differently.
   detected and pulled from the repository before we try to upgrade. This should not affect security
   vulnerability alerts.
 
+## Using Outside of GitHub repos
+
+If Renovate is running somewhere that cannot resolve this repository's `local>` preset references,
+use the generated mirror under `docs/` instead of referencing the repository root files directly.
+
+Example:
+
+```jsonc
+{
+  "extends": [
+    "https://ni.github.io/python-renovate-config/recommended.json"
+  ]
+}
+```
+
+PR builds validate that `docs/` is in sync, and a script is provided to keep it in sync.
+
 ## Presets
 
 ### `presets/enableGitSubmodules.json`

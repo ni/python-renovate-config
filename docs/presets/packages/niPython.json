@@ -1,0 +1,14 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "description": "All NI Python packages.",
+    "packageRules": [
+        {
+            "matchDatasources": [
+                "pypi"
+            ],
+            "matchPackageNames": [
+                "ni**"
+            ]
+        }
+    ]
+}
