@@ -50,6 +50,25 @@ which some project owners may want to configure differently.
   detected and pulled from the repository before we try to upgrade. This should not affect security
   vulnerability alerts.
 
+## Using From Azure DevOps
+
+If Renovate is running somewhere that cannot resolve this repository's `local>` preset references,
+use the generated mirror under `docs/` instead of referencing the repository root files directly.
+
+Example:
+
+```jsonc
+{
+  "extends": [
+    "https://ni.github.io/python-renovate-config/recommended.json"
+  ]
+}
+```
+
+The GitHub Actions workflow keeps `docs/` in sync, rewrites the inter-file preset links to use
+`https://ni.github.io/python-renovate-config/`, and deploys `docs/` to GitHub Pages so those URLs
+resolve without requiring a GitHub PAT.
+
 ## Presets
 
 ### `presets/enableGitSubmodules.json`

@@ -1,5 +1,7 @@
 {
     "files.associations": {
         "*.json": "jsonc"
-    }
+    },
+    "snyk.advanced.organization": "f93fdc30-0e2c-4d1d-81a1-9cdae4a561ed",
+    "snyk.advanced.autoSelectOrganization": true
 }

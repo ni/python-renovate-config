@@ -1,0 +1,75 @@
+name: Sync docs config mirror
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - default.json
+    - recommended.json
+    - presets/**
+    - .github/workflows/sync-docs.yml
+  pull_request:
+    paths:
+    - default.json
+    - recommended.json
+    - presets/**
+    - .github/workflows/sync-docs.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v4
+      with:
+        persist-credentials: true
+
+    - name: Generate docs mirror
+      shell: bash
+      run: |
+        set -euo pipefail
+
+        docs_dir="docs"
+        pages_base_url="https://ni.github.io/python-renovate-config"
+
+        mkdir -p "${docs_dir}/presets/group" "${docs_dir}/presets/packages"
+        find "${docs_dir}" -type f -name '*.json' -delete
+
+        cp default.json recommended.json "${docs_dir}/"
+        cp presets/*.json "${docs_dir}/presets/"
+        cp presets/group/*.json "${docs_dir}/presets/group/"
+        cp presets/packages/*.json "${docs_dir}/presets/packages/"
+
+        find "${docs_dir}" -type f -name '*.json' -print0 | xargs -0 sed -E -i \
+          -e "s|local>ni/python-renovate-config:([A-Za-z0-9_-]+)|${pages_base_url}/\\1.json|g" \
+          -e "s|local>ni/python-renovate-config//([A-Za-z0-9_./-]+)|${pages_base_url}/\\1.json|g"
+
+    - name: Verify docs mirror is clean
+      shell: bash
+      run: |
+        set -euo pipefail
+        if grep -R "local>ni/python-renovate-config" docs; then
+          echo "Found unresolved local preset references in docs/" >&2
+          exit 1
+        fi
+
+    - name: Commit docs mirror changes
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      shell: bash
+      run: |
+        set -euo pipefail
+        if git diff --quiet -- docs; then
+          exit 0
+        fi
+
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add docs
+        git commit -m "Update generated docs config mirror"
+        git push
