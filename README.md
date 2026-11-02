@@ -94,6 +94,11 @@ PR builds validate that `docs/` is in sync, and a script is provided to keep it 
 - Extends [`:enableVulnerabilityAlerts`](https://docs.renovatebot.com/presets-default/#enablevulnerabilityalerts)
 - Enables [`osvVulnerabilityAlerts`](https://docs.renovatebot.com/configuration-options/#osvvulnerabilityalerts)
 
+### `presets/pinGitHubActionDigestsToSemver.json`
+
+- Extends [`helpers:pinGitHubActionDigestsToSemver`](https://docs.renovatebot.com/presets-helpers/#helperspingithubactiondigeststosemver)
+- Handles versions like `v1.2` that only specify major/minor versions and no patch version.
+
 ### Group Presets
 
 #### `presets/group/githubActions.json`
